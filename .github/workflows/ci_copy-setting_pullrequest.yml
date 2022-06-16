@@ -1,4 +1,4 @@
-name: ci_copy-setting_pullrequest
+name: CI
 
 on:
   push:
@@ -14,15 +14,17 @@ env:
   DOCKER_REPO_NAME: ${{secrets.DOCKER_REPO_NAME}}
 
 jobs:
-    build-push-to-docker-hub:
-      runs-on: ubuntu-latest      
-      outputs:
-        date: ${{ steps.tagInfo.outputs.date }}
-        shaShort: ${{ steps.tagInfo.outputs.shaShort }}    
+
+  build:
+
+    runs-on: ubuntu-latest
+    
+    outputs:
+      date: ${{ steps.tagInfo.outputs.date }}
+      shaShort: ${{ steps.tagInfo.outputs.shaShort }}    
     
     steps:
-    - name: Checkout gitops-environment-promotion-source-code_02
-      uses: actions/checkout@v3
+    - uses: actions/checkout@v3
     
     - name: Get tag info
       id: tagInfo
@@ -36,7 +38,6 @@ jobs:
     - name: Login to Docker Hub
       run: |
           docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
-
     - name: Push image to dockerhub
       run: |
         docker tag $DOCKER_USER/$DOCKER_REPO_NAME:latest $DOCKER_USER/$DOCKER_REPO_NAME:${{ steps.tagInfo.outputs.date }}-${{ steps.tagInfo.outputs.shaShort }}
