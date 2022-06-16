@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: simple-deployment
+spec:
+  selector:
+    matchLabels:
+      app: trivial-go-web-app
+  template:
+    metadata:
+      labels:
+        app: trivial-go-web-app
+    spec:
+      containers:
+      - name: webserver-simple
+        imagePullPolicy: Always
+        image: docker.io/javadza/environment-promotion:1.0
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 8080
+        ports:
+        - containerPort: 8080
