@@ -13,14 +13,14 @@ env:
   DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
   DOCKER_REPO_NAME: ${{secrets.DOCKER_REPO_NAME}}
 
- jobs:
+jobs:
     build-push-to-docker-hub:
       runs-on: ubuntu-latest      
       outputs:
         date: ${{ steps.tagInfo.outputs.date }}
         shaShort: ${{ steps.tagInfo.outputs.shaShort }}    
     
-      steps:
+    steps:
         - uses: actions/checkout@v3
         
         - name: Get tag info
