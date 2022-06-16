@@ -21,7 +21,8 @@ jobs:
         shaShort: ${{ steps.tagInfo.outputs.shaShort }}    
     
     steps:
-    - uses: actions/checkout@v3
+    - name: Checkout gitops-environment-promotion-source-code_02
+      uses: actions/checkout@v3
     
     - name: Get tag info
       id: tagInfo
