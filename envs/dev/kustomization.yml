@@ -7,6 +7,9 @@ resources:
 - ../../base
 
 patchesStrategicMerge:
-- version.yml
 - dev_settings.yml
 - replicas.yml
+
+images:
+- name: docker.io/javadza/environment-promotion
+  newTag: "9.02.01"
