@@ -1,4 +1,3 @@
-
 name: ci_copy-setting_pullrequest
 
 on:
@@ -15,7 +14,6 @@ env:
   DOCKER_REPO_NAME: ${{secrets.DOCKER_REPO_NAME}}
 
 jobs:
-
   build-push-to-docker-hub:
       runs-on: ubuntu-latest      
       outputs:
