@@ -1,7 +1,7 @@
 name: Prod Auto-PR
 on:
   push:
-    branches: ['prod']
+    branches: ['master']
 
 jobs:
   createPullRequest:
@@ -13,7 +13,7 @@ jobs:
         id: cpr
         uses: peter-evans/create-pull-request@v4
         with:
-          token: ${{ secrets.PAT }}
+          token: ${{ secrets.ACTIONS_TOKEN }}
           branch: prod
           delete-branch: true
           assignees: JavadZahrabi
